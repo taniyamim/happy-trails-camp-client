@@ -12,7 +12,7 @@ const Header = () => {
             .catch(error => console.log(error))
     }
     return (
-        <div className="navbar fixed bg-opacity-70 max-w-screen-xl z-10 bg-white text-black h-28 mb-4">
+        <div className="navbar fixed bg-opacity-40 max-w-screen-xl z-10 bg-white text-black font-extrabold h-28 mb-4">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
