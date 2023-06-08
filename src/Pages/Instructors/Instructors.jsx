@@ -12,7 +12,7 @@ const Instructors = () => {
             .then(data => {
 
                 setInstructors(data);
-                console.log(data);
+                // console.log(data);
             });
     }, []);
     return (
