@@ -1,9 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
+import { useLocation, useNavigate } from 'react-router-dom';
 const Classes = () => {
     const [classes, setClasses] = useState([]);
-    const { user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
     useEffect(() => {
         fetch('http://localhost:5000/classes')
             .then(res => res.json())
@@ -14,13 +18,51 @@ const Classes = () => {
     }, []);
     const handleSelected = cls => {
         console.log(cls);
+        if (user) {
+            const selectedClass = { name:cls.name, image: cls.image, price: cls.price, instructorName: cls.instructorName, email: user.email}
+          
+            fetch('http://localhost:5000/selectedClasses', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(selectedClass)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                       
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Class Selected.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                })
+        }
+        else {
+            Swal.fire({
+                title: 'Please login to order the food',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Login now!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login', { state: { from: location } })
+                }
+            })
+        }
     }
 
     return (
         <div>
             <Helmet>
                 <title>
-                Happy Trails Camp | Classes
+                    Happy Trails Camp | Classes
                 </title>
             </Helmet>
             <div className=''>
@@ -28,7 +70,7 @@ const Classes = () => {
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-8'>
                 {classes.map(cls => (
-                    <div key={cls._id} className={`card w-96 glass ${cls.availableSeats === 0 ?  'bg-red-900 text-white' : ''}`}>
+                    <div key={cls._id} className={`card w-96 glass ${cls.availableSeats === 0 ? 'bg-red-900 text-white' : ''}`}>
                         <figure><img src={cls.image} className='h-52 py-5 rounded-xl' alt="car!" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">{cls.name}</h2>
