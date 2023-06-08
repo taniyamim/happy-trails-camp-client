@@ -26,6 +26,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setSuccess('user login successful')
+                setError('')
                 Swal.fire({
                     title: 'User Login Successful.',
                     showClass: {
@@ -36,6 +38,15 @@ const Login = () => {
                     }
                 });
                 navigate(from, { replace: true });
+            })
+            .catch(error => {
+                console.log(error);
+                setError('User not found')
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'User Not Found!',
+                  })
             })
     }
     const handleGoogleSignIn = () => {
@@ -58,9 +69,9 @@ const Login = () => {
 
     return (
         <>
-            {/* <Helmet>
-                <title>Bistro Boss | Login</title>
-            </Helmet> */}
+            <Helmet>
+                <title>Happy Trails Camp | Login</title>
+            </Helmet>
             <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content flex-col md:flex-row-reverse">
                     <div className="text-center md:w-1/2 lg:text-left">
