@@ -59,14 +59,14 @@
       "id": 5,
       "name": "Sculpture Workshop",
       "image": "https://yazargokcenur.files.wordpress.com/2018/11/img_3563.jpg",
-      "numberOfStudents": 26,
+      "numberOfStudents": 36,
       "instructorId": 5,
       "instructorName": "Michael Anderson",
       "email":"michael.anderson@example.com",
       "instructorImage": "https://medaccess.org/wp-content/uploads/2023/03/Michael-768x768.jpg",
       "classCategory": "Sculpture",
       "price": 60,
-      "availableSeats": 4,
+      "availableSeats": 0,
       "description": "Unleash your creativity with our Sculpture Workshop. Learn to sculpt using various materials and create unique three-dimensional artworks."
     },
     {
@@ -80,7 +80,7 @@
       "instructorImage": "https://m.media-amazon.com/images/M/MV5BMjIzNTU5MTE5NF5BMl5BanBnXkFtZTgwMTI3NzI5NDE@._V1_.jpg",
       "classCategory": "Photography",
       "price": 45,
-      "availableSeats": 2,
+      "availableSeats": 0,
       "description": "Capture the world through the lens in our Photography Class. Learn composition, lighting, and editing techniques to create stunning photographs."
     },
     {
@@ -164,7 +164,7 @@
       "instructorImage": "https://pbs.twimg.com/profile_images/1129189818900987905/Wj_FjIzM_400x400.jpg",
       "classCategory": "Arts",
       "price": 35,
-      "availableSeats": 10,
+      "availableSeats": 0,
       "description": "Explore the world of Collage Art and create visually captivating artworks using various materials and mixed media techniques."
     },
     {
