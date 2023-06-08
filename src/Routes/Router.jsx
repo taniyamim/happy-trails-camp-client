@@ -10,6 +10,7 @@ import Classes from "../Pages/Classes/Classes";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
 import MyClass from "../Pages/Dashboard/MyClass/MyClass";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 
 
 
@@ -51,7 +52,15 @@ import MyClass from "../Pages/Dashboard/MyClass/MyClass";
         {
           path: 'myclass', 
           element: <MyClass></MyClass>,
-        }
+        },
+        {
+          path: 'allusers', 
+          element: <AllUsers></AllUsers>,
+        },
+        {
+          path: 'myclass', 
+          element: <MyClass></MyClass>,
+        },
         
       ]
     }

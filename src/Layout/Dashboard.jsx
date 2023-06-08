@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet-async';
 const Dashboard = () => {
     const [selectedClass] = UseSelectedClass();
     console.log(selectedClass);
-    // const [isAdmin] = useAdmin();
+    const isAdmin = true
 
     return (
         <div>
@@ -26,27 +26,38 @@ const Dashboard = () => {
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 h-full  text-base-content">
                         {/* Sidebar content here */}
-                        <li><NavLink to="/"><FaHome></FaHome> Home</NavLink> </li>
+                        {
+                            isAdmin ?
+                                <>
+                                    <li><NavLink to="/dashboard/allusers"><FaUsers></FaUsers> All Users</NavLink></li>
+                                    <li><NavLink to="/dashboard/manageClasses"><FaBook></FaBook> Manage Classes</NavLink></li>
+                                    <li><NavLink to="/dashboard/manageUsers"><FaWallet></FaWallet> Manage Users</NavLink></li>
+
+                                </> :
+                                <>
+                                    <li><NavLink to="/dashboard/addClass"> <FaUtensils></FaUtensils> Add a Class</NavLink></li>
+                                    <li><NavLink to="/dashboard/instClasses"> <FaUtensils></FaUtensils> My Classes</NavLink></li>
+                                    <li><NavLink to="/"><FaWallet></FaWallet> Payment History</NavLink></li>
+                                    <li>
+                                        <NavLink to="/dashboard/myclass"><FaShoppingCart></FaShoppingCart> My Selected Class
+                                            <span className="badge inl badge-secondary">+{selectedClass?.length || 0}</span>
+                                        </NavLink>
+
+                                    </li>
+                                    <li>
+                                        <NavLink to="/dashboard/myEnrolledclass"><FaShoppingCart></FaShoppingCart> My Enrolled Class
+                                            {/* <span className="badge inl badge-secondary">+{cart?.length || 0}</span> */}
+                                        </NavLink>
+
+                                    </li>
+                                </>
+                        }
                         <div className="divider"></div>
-                     
-                        <li><NavLink to="/dashboard/manageClasses"><FaBook></FaBook> Manage Classes</NavLink></li>
-                        <li><NavLink to="/dashboard/manageUsers"><FaWallet></FaWallet> Manage Users</NavLink></li>
-                        <li><NavLink to="/dashboard/addClass"> <FaUtensils></FaUtensils> Add a Class</NavLink></li>
-                        <li><NavLink to="/dashboard/instClasses"> <FaUtensils></FaUtensils> My Classes</NavLink></li>
-                        <li><NavLink to="/"><FaWallet></FaWallet> Payment History</NavLink></li>
-                        <li>
-                            <NavLink to="/dashboard/myclass"><FaShoppingCart></FaShoppingCart> My Selected Class
-                                <span className="badge inl badge-secondary">+{selectedClass?.length || 0}</span>
-                            </NavLink>
+                        <li><NavLink to="/"><FaHome></FaHome> Home</NavLink> </li>
 
-                        </li>
-                        <li>
-                            <NavLink to="/dashboard/myEnrolledclass"><FaShoppingCart></FaShoppingCart> My Enrolled Class
-                                {/* <span className="badge inl badge-secondary">+{cart?.length || 0}</span> */}
-                            </NavLink>
 
-                        </li>
-                        
+
+
                     </ul>
 
                 </div>
