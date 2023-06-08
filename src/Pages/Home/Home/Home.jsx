@@ -8,6 +8,7 @@ const Home = () => {
            <Banner></Banner>
            <PopularClasses></PopularClasses>
            <PopularInstructor></PopularInstructor>
+           {/* TO DO: EXTRA SECTION */}
             
         </div>
     );
