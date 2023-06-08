@@ -3,11 +3,13 @@ import { NavLink, Outlet } from "react-router-dom";
 import { FaBookReader, FaWallet, FaCalendarAlt, FaHome, FaUtensils, FaBook, FaUsers, FaShoppingCart } from 'react-icons/fa';
 import UseSelectedClass from '../hooks/UseSelectedClass';
 import { Helmet } from 'react-helmet-async';
+import useAdmin from '../hooks/useAdmin';
 
 const Dashboard = () => {
     const [selectedClass] = UseSelectedClass();
     console.log(selectedClass);
-    const isAdmin = true
+    // const isAdmin = true
+    const [isAdmin] = useAdmin();
 
     return (
         <div>
