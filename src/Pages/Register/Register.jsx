@@ -6,9 +6,13 @@ import { useForm } from 'react-hook-form';
 import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    console.log('signup page location', location);
+    const from = location.state?.from?.pathname || '/';
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
     console.log(watch("example"));
-    const { createUser, signInWithGoogle } = useContext(AuthContext);
+    const { createUser, signInWithGoogle, updateUserProfile } = useContext(AuthContext);
     const onSubmit = data => {
         createUser(data.email, data.password)
             .then(result => {
@@ -18,7 +22,7 @@ const Register = () => {
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
                         const saveUser = { name: data.name, email: data.email }
-                        fetch('/users', {
+                        fetch('http://localhost:5000/users', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
@@ -36,19 +40,29 @@ const Register = () => {
                                         showConfirmButton: false,
                                         timer: 1500
                                     });
-                                    navigate('/');
+                                    navigate(from, { replace: true });
                                 }
                             })
                     })
                     .catch(error => console.log(error));
             });
     };
+    const handleGoogleSignIn = () => {
 
-    // const navigate = useNavigate();
-    // const location = useLocation();
-    // console.log('signup page location', location);
-    // const from = location.state?.from?.pathname || '/';
-    
+
+        signInWithGoogle()
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                console.log(error);
+            })
+
+    }
+
+
 
     return (
         <>
@@ -128,9 +142,9 @@ const Register = () => {
                         </form>
                         <p className='my-4 text-center'>Already a user? <Link className='text-pink-400 font-bold' to="/login">Login</Link></p>
                         <div className="divider">OR</div>
-                        <button className="btn m-5 gap-2 bg-pink-900 text-white">
+                        <button onClick={handleGoogleSignIn} className="btn m-5 gap-2 bg-pink-900 text-white">
                             Sign In With Google
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-google" viewBox="0 0 16 16"> <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"/> </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-google" viewBox="0 0 16 16"> <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" /> </svg>
                         </button>
                     </div>
                 </div>
