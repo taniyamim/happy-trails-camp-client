@@ -8,7 +8,10 @@ import Register from "../Pages/Register/Register";
 import Instructors from "../Pages/Instructors/Instructors";
 import Classes from "../Pages/Classes/Classes";
 import PrivateRoute from "./PrivateRoute";
-import Dashboard from "../Pages/Dashboard/Dashboard";
+import Dashboard from "../Layout/Dashboard";
+import MyClass from "../Pages/Dashboard/MyClass/MyClass";
+
+
 
 
   export const router = createBrowserRouter([
@@ -22,15 +25,13 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
         }, 
         {
           path: 'instructors', 
-          element: <Instructors></Instructors>
+          element: <Instructors></Instructors>,
+          
         },
         {
           path: 'classes',
-          element: <Classes></Classes>
-        },
-        {
-          path: 'dashboard',
-          element: <PrivateRoute> <Dashboard></Dashboard> </PrivateRoute>
+          element: <Classes></Classes>,
+         
         },
         {
           path: 'login',
@@ -39,46 +40,19 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
         {
           path: 'register',
           element: <Register></Register>
-        },
-        // {
-        //   path: 'secret',
-        //   element: <PrivateRoute><Secret></Secret></PrivateRoute>
-        // }
+        }
+        
       ]
     },
-    // {
-    //   path: 'dashboard',
-    //   element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>, 
-    //   children: [
-    //     {
-    //       path: 'userhome',
-    //       element: <UserHome></UserHome>
-    //     },
-    //     {
-    //       path: 'mycart', 
-    //       element: <MyCart></MyCart>
-    //     },
-    //     {
-    //       path:'payment',
-    //       element: <Payment></Payment>
-    //     },
-    //     // admin routes
-    //     {
-    //       path: 'adminhome',
-    //       element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
-    //     },
-    //     {
-    //       path: 'allusers', 
-    //       element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
-    //     },
-    //     {
-    //       path: 'addItem',
-    //       element: <AdminRoute><AddItem></AddItem></AdminRoute>
-    //     },
-    //     {
-    //       path: 'manageitems',
-    //       element: <AdminRoute><ManageItems></ManageItems></AdminRoute>
-    //     }
-    //   ]
-    // }
+    {
+      path: 'dashboard',
+      element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>, 
+      children: [
+        {
+          path: 'myclass', 
+          element: <MyClass></MyClass>,
+        }
+        
+      ]
+    }
   ]);

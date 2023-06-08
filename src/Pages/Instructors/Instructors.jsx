@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useLoaderData } from 'react-router-dom';
 
 const Instructors = () => {
+    // const instructors = useLoaderData();
+    // console.log(instructors);
     const [instructors, setInstructors] = useState([]);
     useEffect(() => {
         fetch('http://localhost:5000/classes')

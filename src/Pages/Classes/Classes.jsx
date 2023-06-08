@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import UseSelectedClass from '../../hooks/UseSelectedClass';
 const Classes = () => {
     const [classes, setClasses] = useState([]);
+    // const classes =useLoaderData();
+    console.log(classes);
     const { user } = useContext(AuthContext);
     const [, refetch] = UseSelectedClass();
     const navigate = useNavigate();
@@ -46,7 +48,7 @@ const Classes = () => {
         }
         else {
             Swal.fire({
-                title: 'Please login to order the food',
+                title: 'Please login to select the class',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
