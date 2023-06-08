@@ -5,7 +5,7 @@ import Instructor from '../../../components/Instructor/Instructor';
 const PopularInstructor = () => {
     const [popularInstructor, setPopularInstructor] = useState([]);
     useEffect(() => {
-        fetch('data.json')
+        fetch('http://localhost:5000/classes')
             .then(res => res.json())
             .then(data => {
                 const popularInstructor = data.filter(instructor => instructor.numberOfStudents >= 15);

@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { AuthContext } from '../../Providers/AuthProvider';
 const Classes = () => {
     const [classes, setClasses] = useState([]);
+    const { user} = useContext(AuthContext);
     useEffect(() => {
         fetch('http://localhost:5000/classes')
             .then(res => res.json())
@@ -10,6 +12,9 @@ const Classes = () => {
                 console.log(data);
             });
     }, []);
+    const handleSelected = cls => {
+        console.log(cls);
+    }
 
     return (
         <div>
@@ -31,7 +36,7 @@ const Classes = () => {
                             <p> <span className='font-bold'>Available Seats:</span> {cls.availableSeats}</p>
                             <p> <span className='font-bold'>Price:</span> ${cls.price}</p>
                             <div className="card-actions justify-end">
-                                <button className="btn text-white bg-rose-900">Book now!</button>
+                                <button onClick={() => handleSelected(cls)} className="btn text-white bg-rose-900">Select!</button>
                             </div>
                         </div>
                     </div>
