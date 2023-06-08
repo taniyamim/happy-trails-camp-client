@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ClassPopular = ({ item }) => {
     const { name, image, description, price, numberOfStudents } = item;
@@ -13,9 +14,11 @@ const ClassPopular = ({ item }) => {
                     <p>{description}</p>
                     <p> <span className='font-bold'>Enrolled Students:</span> {numberOfStudents}</p>
                     <p> <span className='font-bold'>Price:</span> ${price}</p>
-                    
+
                     <div className="card-actions">
-                        <button className="btn text-white bg-rose-900">Buy Now</button>
+                        <Link to='/classes'>
+                            <button className="btn text-white bg-rose-900">Enrol Now</button>
+                        </Link>
                     </div>
                 </div>
             </div>

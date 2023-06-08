@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 const Classes = () => {
     const [classes, setClasses] = useState([]);
     useEffect(() => {
-        fetch('data.json')
+        fetch('http://localhost:5000/classes')
             .then(res => res.json())
             .then(data => {
                 setClasses(data);
@@ -23,7 +23,7 @@ const Classes = () => {
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-8'>
                 {classes.map(cls => (
-                    <div key={cls.id} className={`card w-96 glass ${cls.availableSeats === 0 ?  'bg-red-900 text-white' : ''}`}>
+                    <div key={cls._id} className={`card w-96 glass ${cls.availableSeats === 0 ?  'bg-red-900 text-white' : ''}`}>
                         <figure><img src={cls.image} className='h-52 py-5 rounded-xl' alt="car!" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">{cls.name}</h2>
@@ -31,7 +31,7 @@ const Classes = () => {
                             <p> <span className='font-bold'>Available Seats:</span> {cls.availableSeats}</p>
                             <p> <span className='font-bold'>Price:</span> ${cls.price}</p>
                             <div className="card-actions justify-end">
-                                <button className="btn text-white bg-rose-900">Enroll now!</button>
+                                <button className="btn text-white bg-rose-900">Book now!</button>
                             </div>
                         </div>
                     </div>

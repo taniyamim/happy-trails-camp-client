@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const Instructors = () => {
     const [instructors, setInstructors] = useState([]);
     useEffect(() => {
-        fetch('data.json')
+        fetch('http://localhost:5000/classes')
             .then(res => res.json())
             .then(data => {
 
@@ -13,6 +14,11 @@ const Instructors = () => {
     }, []);
     return (
         <div className=''>
+            <Helmet>
+                <title>
+                Happy Trails Camp | Instructors
+                </title>
+            </Helmet>
             <div className=''>
                 <h1 className='text-4xl font-extrabold border-t-2 border-b-2 text-white text-center py-5'>Our Instructors</h1>
             </div>
@@ -20,7 +26,8 @@ const Instructors = () => {
 
                 {
                     instructors.map(instructor => <div>
-                        <div className="card card-side bg-base-100 shadow-xl">
+                        <div  className="card card-side bg-base-100 shadow-xl">
+
                             <figure><img src={instructor.instructorImage} className='h-24' alt="Movie" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{instructor.instructorName}</h2>
