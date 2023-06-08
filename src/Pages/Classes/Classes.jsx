@@ -3,9 +3,11 @@ import { Helmet } from 'react-helmet-async';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
+import UseSelectedClass from '../../hooks/UseSelectedClass';
 const Classes = () => {
     const [classes, setClasses] = useState([]);
     const { user } = useContext(AuthContext);
+    const [, refetch] = UseSelectedClass();
     const navigate = useNavigate();
     const location = useLocation();
     useEffect(() => {
@@ -31,7 +33,7 @@ const Classes = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.insertedId) {
-                       
+                       refetch();
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
