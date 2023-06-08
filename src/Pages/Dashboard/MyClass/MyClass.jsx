@@ -9,6 +9,7 @@ const MyClass = () => {
     const [selectedClass, refetch] = UseSelectedClass();
     
     const handleDelete = item => {
+        console.log(item);
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -19,7 +20,7 @@ const MyClass = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://bistro-boss-server-fawn.vercel.app/carts/${item._id}`, {
+                fetch(`http://localhost:5000/selectedClasses/${item._id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -28,7 +29,7 @@ const MyClass = () => {
                             refetch();
                             Swal.fire(
                                 'Deleted!',
-                                'Your file has been deleted.',
+                                'Your class has been deleted.',
                                 'success'
                             )
                         }
