@@ -13,6 +13,7 @@ import MyClass from "../Pages/Dashboard/MyClass/MyClass";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AddAClass from "../Pages/Dashboard/AddAClass/AddAClass";
 import InstructorClasses from "../Pages/Dashboard/InstructorClasses/InstructorClasses";
+import MyEnrolledClass from "../Pages/Dashboard/MyEnrolledClass/MyEnrolledClass";
 
 
 
@@ -73,7 +74,7 @@ import InstructorClasses from "../Pages/Dashboard/InstructorClasses/InstructorCl
         },
         {
           path: 'myEnrolledClass', 
-          element: <InstructorClasses></InstructorClasses>,
+          element: <MyEnrolledClass></MyEnrolledClass>,
         },
         
       ]
