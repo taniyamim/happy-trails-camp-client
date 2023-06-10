@@ -14,6 +14,7 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AddAClass from "../Pages/Dashboard/AddAClass/AddAClass";
 import InstructorClasses from "../Pages/Dashboard/InstructorClasses/InstructorClasses";
 import MyEnrolledClass from "../Pages/Dashboard/MyEnrolledClass/MyEnrolledClass";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 
 
 
@@ -75,6 +76,10 @@ import MyEnrolledClass from "../Pages/Dashboard/MyEnrolledClass/MyEnrolledClass"
         {
           path: 'myEnrolledClass', 
           element: <MyEnrolledClass></MyEnrolledClass>,
+        },
+        {
+          path: 'payment', 
+          element: <Payment></Payment>,
         },
         
       ]
