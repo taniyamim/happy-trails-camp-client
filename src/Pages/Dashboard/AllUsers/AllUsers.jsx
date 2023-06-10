@@ -30,6 +30,26 @@ const AllUsers = () => {
             }
         })
     }
+    const handleMakeInstructor = user =>{
+        console.log(user);
+        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+            method: 'PATCH'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.modifiedCount){
+                refetch();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${user.name} is an Instructor Now!`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }
+        })
+    }
     return (
         <div className="w-full">
             <Helmet>
@@ -44,8 +64,8 @@ const AllUsers = () => {
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Role</th>
-                            <th></th>
+                            <th>Action</th>
+                            <th>Action</th>
                          
                         </tr>
                     </thead>
@@ -56,10 +76,10 @@ const AllUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.role === 'admin' ? 'admin' :
-                                    <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost bg-pink-600  text-white"><FaUserShield></FaUserShield>Admin</button>
+                                    <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost bg-pink-600  text-white"><FaUserShield></FaUserShield>Make Admin</button>
                                 }</td>
-                                <td>{user.role === 'admin' ? 'admin' :
-                                    <button onClick={() => handleMakeInstructor(user)} className="btn btn-ghost bg-pink-600  text-white"> <FaChalkboardTeacher></FaChalkboardTeacher> Instructor</button>
+                                <td>{user.role === 'instructor' ? 'instructor' :
+                                    <button onClick={() => handleMakeInstructor(user)} className="btn btn-ghost bg-pink-600  text-white"> <FaChalkboardTeacher></FaChalkboardTeacher>Make Instructor</button>
                                 }</td>
                                 
                             </tr>)

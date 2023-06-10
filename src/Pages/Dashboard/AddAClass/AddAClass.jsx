@@ -1,43 +1,47 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import useAuth from '../../../hooks/useAuth';
-import { AuthContext } from '../../../Providers/AuthProvider';
+// import { useContext } from "react"
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../../Providers/AuthProvider';
 
 const AddAClass = () => {
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth()
+    console.log(user.displayName);
     const [axiosSecure] = useAxiosSecure();
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const { name, classImg, instructorName, instructorEmail, price, availableSeats } = event.target.elements;
+        const form = event.target;
+        // const { name, classImg, price, availableSeats } = event.target.element;
 
         const newItem = {
-            name: name.value,
-            classImg: classImg.value,
-            instructorName: instructorName.value,
-            instructorEmail: instructorEmail.value,
-            price: parseFloat(price.value),
-            availableSeats: parseInt(availableSeats.value),
+            name: form.name.value,
+            classImg: form.classImg.value,
+            instructorName: user.displayName,
+            instructorEmail: user.email,
+            price: parseFloat(form.price.value),
+            availableSeats: parseInt(form.availableSeats.value),
         };
 
-        axiosSecure.post('/classes', newItem)
-            .then(response => {
+        axiosSecure
+            .post('/addClass', newItem)
+            .then((response) => {
                 console.log('New class added:', response.data);
-                if(response.data.insertedId){
-                    reset();
+                if (response.data.insertedId) {
+                    
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: 'Item added successfully',
+                        title: 'Class added successfully',
                         showConfirmButton: false,
-                        timer: 1500
-                      })}
+                        timer: 1500,
+                    });
+                }
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error('Error adding class:', error);
-                
             });
     };
 
@@ -60,7 +64,12 @@ const AddAClass = () => {
                                 <span className="label-text text-black font-bold">Class Image</span>
                             </label>
                             <label className="input-group ">
-                                <input type="text" name="classImg" placeholder="Class Image URL" className="input input-bordered w-full" />
+                                <input
+                                    type="text"
+                                    name="classImg"
+                                    placeholder="Class Image URL"
+                                    className="input input-bordered w-full"
+                                />
                             </label>
                         </div>
                     </div>
@@ -70,7 +79,14 @@ const AddAClass = () => {
                                 <span className="label-text text-black font-bold">Instructor Name</span>
                             </label>
                             <label className="input-group">
-                                <input type="text" name="instructorName" placeholder="Instructor Name" defaultValue={user.displayName} className="input input-bordered w-full" readOnly />
+                                <input
+                                    type="text"
+                                    name="instructorName"
+                                    placeholder="Instructor Name"
+                                    defaultValue={user.displayName}
+                                    className="input input-bordered w-full"
+                                    readOnly
+                                />
                             </label>
                         </div>
                         <div className="form-control">
@@ -78,7 +94,14 @@ const AddAClass = () => {
                                 <span className="label-text text-black font-bold">Email</span>
                             </label>
                             <label className="input-group">
-                                <input type="email" name="instructorEmail" placeholder="Instructor Email" defaultValue={user.email} className="input input-bordered w-full" readOnly />
+                                <input
+                                    type="email"
+                                    name="instructorEmail"
+                                    placeholder="Instructor Email"
+                                    value={user.email}
+                                    className="input input-bordered w-full"
+                                    readOnly
+                                />
                             </label>
                         </div>
                     </div>
@@ -96,7 +119,12 @@ const AddAClass = () => {
                                 <span className="label-text text-black font-bold">Available Seats</span>
                             </label>
                             <label className="input-group">
-                                <input type="number" name="availableSeats" placeholder="Available Seats" className="input input-bordered w-full" />
+                                <input
+                                    type="number"
+                                    name="availableSeats"
+                                    placeholder="Available Seats"
+                                    className="input input-bordered w-full"
+                                />
                             </label>
                         </div>
                     </div>

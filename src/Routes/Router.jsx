@@ -12,6 +12,7 @@ import Dashboard from "../Layout/Dashboard";
 import MyClass from "../Pages/Dashboard/MyClass/MyClass";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AddAClass from "../Pages/Dashboard/AddAClass/AddAClass";
+import InstructorClasses from "../Pages/Dashboard/InstructorClasses/InstructorClasses";
 
 
 
@@ -65,6 +66,14 @@ import AddAClass from "../Pages/Dashboard/AddAClass/AddAClass";
         {
           path: 'addAClass', 
           element: <AddAClass></AddAClass>,
+        },
+        {
+          path: 'insClasses', 
+          element: <InstructorClasses></InstructorClasses>,
+        },
+        {
+          path: 'myEnrolledClass', 
+          element: <InstructorClasses></InstructorClasses>,
         },
         
       ]

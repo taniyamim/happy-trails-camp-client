@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { NavLink, Outlet } from "react-router-dom";
-import { FaBookReader, FaWallet, FaCalendarAlt, FaHome, FaUtensils, FaBook, FaUsers, FaShoppingCart } from 'react-icons/fa';
+import { FaBookReader, FaWallet, FaHome, FaBookOpen, FaBook, FaUsers, FaShoppingCart } from 'react-icons/fa';
 import UseSelectedClass from '../hooks/UseSelectedClass';
 import { Helmet } from 'react-helmet-async';
 import useAdmin from '../hooks/useAdmin';
+import useInstructor from '../hooks/useInstructor';
 
 const Dashboard = () => {
     const [selectedClass] = UseSelectedClass();
-    console.log(selectedClass);
-    const isInstructor = true;
+    // console.log(selectedClass);
+    // const isInstructor = true;
+    const [isInstructor] = useInstructor();
     const [isAdmin] = useAdmin();
 
     return (
@@ -37,8 +39,8 @@ const Dashboard = () => {
 
                                 </> : isInstructor ?
                                 <>
-                                    <li><NavLink to="/dashboard/addAClass"> <FaUtensils></FaUtensils> Add a Class</NavLink></li>
-                                    <li><NavLink to="/dashboard/instClasses"> <FaUtensils></FaUtensils> My Classes</NavLink></li>
+                                    <li><NavLink to="/dashboard/addAClass"> <FaBookOpen></FaBookOpen> Add a Class</NavLink></li>
+                                    <li><NavLink to="/dashboard/insClasses"><FaBookReader></FaBookReader>  My Classes</NavLink></li>
                                 </> : 
                                 <>
                                     {/* <li><NavLink to="/"><FaWallet></FaWallet> Payment History</NavLink></li> */}
