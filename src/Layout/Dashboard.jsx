@@ -8,7 +8,7 @@ import useAdmin from '../hooks/useAdmin';
 const Dashboard = () => {
     const [selectedClass] = UseSelectedClass();
     console.log(selectedClass);
-    // const isAdmin = true
+    const isInstructor = true;
     const [isAdmin] = useAdmin();
 
     return (
@@ -31,20 +31,21 @@ const Dashboard = () => {
                         {
                             isAdmin ?
                                 <>
-                                    <li><NavLink to="/dashboard/allusers"><FaUsers></FaUsers> All Users</NavLink></li>
+                                    <li><NavLink to="/dashboard/allusers"><FaUsers></FaUsers> Manage Users</NavLink></li>
                                     <li><NavLink to="/dashboard/manageClasses"><FaBook></FaBook> Manage Classes</NavLink></li>
-                                    <li><NavLink to="/dashboard/manageUsers"><FaWallet></FaWallet> Manage Users</NavLink></li>
+                                    
 
-                                </> :
+                                </> : isInstructor ?
                                 <>
-                                    <li><NavLink to="/dashboard/addClass"> <FaUtensils></FaUtensils> Add a Class</NavLink></li>
+                                    <li><NavLink to="/dashboard/addAClass"> <FaUtensils></FaUtensils> Add a Class</NavLink></li>
                                     <li><NavLink to="/dashboard/instClasses"> <FaUtensils></FaUtensils> My Classes</NavLink></li>
-                                    <li><NavLink to="/"><FaWallet></FaWallet> Payment History</NavLink></li>
+                                </> : 
+                                <>
+                                    {/* <li><NavLink to="/"><FaWallet></FaWallet> Payment History</NavLink></li> */}
                                     <li>
                                         <NavLink to="/dashboard/myclass"><FaShoppingCart></FaShoppingCart> My Selected Class
                                             <span className="badge inl badge-secondary">+{selectedClass?.length || 0}</span>
                                         </NavLink>
-
                                     </li>
                                     <li>
                                         <NavLink to="/dashboard/myEnrolledclass"><FaShoppingCart></FaShoppingCart> My Enrolled Class
