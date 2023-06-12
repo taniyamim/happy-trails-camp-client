@@ -16,6 +16,7 @@ import InstructorClasses from "../Pages/Dashboard/InstructorClasses/InstructorCl
 import MyEnrolledClass from "../Pages/Dashboard/MyEnrolledClass/MyEnrolledClass";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import ManageClasses from "../Pages/Dashboard/ManageClasses/ManageClasses";
+import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
 
 
 
@@ -85,6 +86,10 @@ import ManageClasses from "../Pages/Dashboard/ManageClasses/ManageClasses";
         {
           path: 'manageClasses', 
           element: <ManageClasses></ManageClasses>
+        },
+        {
+          path: 'paymentHistory', 
+          element: <PaymentHistory></PaymentHistory>
         },
         
       ]

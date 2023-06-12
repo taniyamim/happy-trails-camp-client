@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { NavLink, Outlet } from "react-router-dom";
-import { FaBookReader, FaWallet, FaHome, FaBookOpen, FaBook, FaUsers, FaShoppingCart } from 'react-icons/fa';
+import { GiBookshelf  } from "react-icons/gi";
+import { ImBook } from "react-icons/im";
+import { FaBookReader, FaWallet, FaHome, FaBookOpen, FaBook, FaUsers } from 'react-icons/fa';
 import UseSelectedClass from '../hooks/UseSelectedClass';
 import { Helmet } from 'react-helmet-async';
 import useAdmin from '../hooks/useAdmin';
@@ -45,12 +47,18 @@ const Dashboard = () => {
                                 <>
                                     {/* <li><NavLink to="/"><FaWallet></FaWallet> Payment History</NavLink></li> */}
                                     <li>
-                                        <NavLink to="/dashboard/myclass"><FaShoppingCart></FaShoppingCart> My Selected Class
+                                        <NavLink to="/dashboard/myclass"><GiBookshelf></GiBookshelf> My Selected Class
                                             <span className="badge inl badge-secondary">+{selectedClass?.length || 0}</span>
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/dashboard/myEnrolledclass"><FaShoppingCart></FaShoppingCart> My Enrolled Class
+                                        <NavLink to="/dashboard/myEnrolledclass"><ImBook></ImBook> My Enrolled Class
+                                            {/* <span className="badge inl badge-secondary">+{cart?.length || 0}</span> */}
+                                        </NavLink>
+
+                                    </li>
+                                    <li>
+                                        <NavLink to="/dashboard/paymentHistory"><FaWallet></FaWallet> Payment History
                                             {/* <span className="badge inl badge-secondary">+{cart?.length || 0}</span> */}
                                         </NavLink>
 
