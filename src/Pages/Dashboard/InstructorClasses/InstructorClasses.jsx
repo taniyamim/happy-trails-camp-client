@@ -13,7 +13,7 @@ const InstructorClasses = () => {
     console.log(user.email);
     const [axiosSecure] = useAxiosSecure();
     const [addClass , refetch] = UseInstructorClass();
-    console.log(addClass);
+    console.log('classess',addClass);
 
     // const { refetch } = useQuery({
     //     queryKey: ['addClass', user?.email],

@@ -6,7 +6,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 
 
-const CheckoutForm = ({ cart, price }) => {
+const CheckoutForm = ({ selectedClass, price }) => {
     const stripe = useStripe();
     const elements = useElements();
     const { user } = useAuth();
@@ -15,17 +15,7 @@ const CheckoutForm = ({ cart, price }) => {
     const [clientSecret, setClientSecret] = useState('');
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
-
-    useEffect(() => {
-        if (price > 0) {
-            axiosSecure.post('/create-payment-intent', { price })
-                .then(res => {
-                    console.log(res.data.clientSecret)
-                    setClientSecret(res.data.clientSecret);
-                })
-        }
-    }, [price, axiosSecure])
-
+   
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -82,11 +72,11 @@ const CheckoutForm = ({ cart, price }) => {
                 transactionId: paymentIntent.id,
                 price,
                 date: new Date(),
-                quantity: cart.length,
-                cartItems: cart.map(item => item._id),
-                menuItems: cart.map(item => item.menuItemId),
+                quantity: selectedClass.length,
+                selectedClassItem: selectedClass.map(item => item._id),
+                // selectedClass: selectedClass.map(item => item.menuItemId),
                 status: 'service pending',
-                itemNames: cart.map(item => item.name)
+                itemNames: selectedClass.map(item => item.name)
             }
             axiosSecure.post('/payments', payment)
                 .then(res => {
@@ -102,7 +92,7 @@ const CheckoutForm = ({ cart, price }) => {
 
     return (
         <>
-            <form className="w-2/3 m-8" onSubmit={handleSubmit}>
+            <form className="w-full" onSubmit={handleSubmit}>
                 <CardElement
                     options={{
                         style: {
@@ -119,7 +109,7 @@ const CheckoutForm = ({ cart, price }) => {
                         },
                     }}
                 />
-                <button className="btn btn-primary btn-sm mt-4" type="submit" disabled={!stripe || !clientSecret || processing}>
+                <button onClick={handleSubmit} className="btn btn-danger btn-sm mt-4 bg-pink-200 text-black font-bold" type="submit" >
                     Pay
                 </button>
             </form>

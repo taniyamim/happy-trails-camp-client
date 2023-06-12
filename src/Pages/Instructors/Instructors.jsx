@@ -34,7 +34,8 @@ const Instructors = () => {
                             <figure><img src={instructor.instructorImage} className='h-24' alt="Movie" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{instructor.instructorName}</h2>
-                                <p> <span className='font-bold'>Email</span> {instructor.email} </p>
+                                <p> <span className='font-bold'>Email:</span> {instructor.instructorEmail} </p>
+                                <p> <span className='font-bold'>Number of Classes Taken:</span>  </p>
                                 
                             </div>
                         </div>

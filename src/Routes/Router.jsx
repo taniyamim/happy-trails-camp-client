@@ -15,6 +15,7 @@ import AddAClass from "../Pages/Dashboard/AddAClass/AddAClass";
 import InstructorClasses from "../Pages/Dashboard/InstructorClasses/InstructorClasses";
 import MyEnrolledClass from "../Pages/Dashboard/MyEnrolledClass/MyEnrolledClass";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import ManageClasses from "../Pages/Dashboard/ManageClasses/ManageClasses";
 
 
 
@@ -80,6 +81,10 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
         {
           path: 'payment', 
           element: <Payment></Payment>,
+        },
+        {
+          path: 'manageClasses', 
+          element: <ManageClasses></ManageClasses>
         },
         
       ]

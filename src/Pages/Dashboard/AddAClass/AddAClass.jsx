@@ -23,6 +23,7 @@ const AddAClass = () => {
             instructorEmail: user.email,
             price: parseFloat(form.price.value),
             availableSeats: parseInt(form.availableSeats.value),
+            status: "Pending"
         };
 
         axiosSecure

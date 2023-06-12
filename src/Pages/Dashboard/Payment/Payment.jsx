@@ -5,7 +5,7 @@ import UseSelectedClass from "../../../hooks/UseSelectedClass";
 
 
 // TODO: provide publishable Key
-const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
+const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway);
 const Payment = () => {
     const [selectedClass, refetch] = UseSelectedClass();
     // const total = cart.reduce((sum, item) => sum + item.price, 0);
