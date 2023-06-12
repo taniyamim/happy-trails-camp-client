@@ -1,5 +1,5 @@
 import {
-    createBrowserRouter,
+    createBrowserRouter, useParams,
   } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
@@ -80,8 +80,9 @@ import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
           element: <MyEnrolledClass></MyEnrolledClass>,
         },
         {
-          path: 'payment', 
+          path: 'payment/:id', 
           element: <Payment></Payment>,
+          loader:({ params }) => fetch(`http://localhost:5000/selectedClasses/${params._id}`)
         },
         {
           path: 'manageClasses', 

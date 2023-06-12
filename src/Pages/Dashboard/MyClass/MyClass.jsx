@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import UseSelectedClass from '../../../hooks/UseSelectedClass';
 import Swal from 'sweetalert2';
@@ -7,8 +7,9 @@ import { FaTrashAlt } from 'react-icons/fa';
 
 const MyClass = () => {
     const [selectedClass, refetch] = UseSelectedClass();
-    
-    const handleDelete = item => {
+    const [selectedPrice, setSelectedPrice] = useState();
+
+    const handleDelete = (item) => {
         console.log(item);
         Swal.fire({
             title: 'Are you sure?',
@@ -17,26 +18,30 @@ const MyClass = () => {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Yes, delete it!',
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(`http://localhost:5000/selectedClasses/${item._id}`, {
-                    method: 'DELETE'
+                    method: 'DELETE',
                 })
-                    .then(res => res.json())
-                    .then(data => {
+                    .then((res) => res.json())
+                    .then((data) => {
                         if (data.deletedCount > 0) {
                             refetch();
-                            Swal.fire(
-                                'Deleted!',
-                                'Your class has been deleted.',
-                                'success'
-                            )
+                            Swal.fire('Deleted!', 'Your class has been deleted.', 'success');
                         }
-                    })
+                    });
             }
-        })
-    }
+        });
+    };
+
+    const handlePay = (item) => {
+        console.log(item);
+        setSelectedPrice(item._id);
+        console.log(item._id);
+    };
+
+
     return (
         <div className="w-full">
             <Helmet>
@@ -59,35 +64,33 @@ const MyClass = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                            selectedClass.map((item, index) => (
-                                <tr key={item._id}>
-                                    <td>{index + 1}</td>
-                                    <td>
-                                        <div className="avatar">
-                                            <div className="mask mask-squircle w-12 h-12">
-                                                <img src={item.image} alt="Avatar Tailwind CSS Component" />
-                                            </div>
+                        {selectedClass.map((item, index) => (
+                            <tr key={item._id}>
+                                <td>{index + 1}</td>
+                                <td>
+                                    <div className="avatar">
+                                        <div className="mask mask-squircle w-12 h-12">
+                                            <img src={item.image} alt="Avatar Tailwind CSS Component" />
                                         </div>
-                                    </td>
-                                    <td>{item.name}</td>
-                                    <td className="text-end">${item.price}</td>
-                                    <td>
-                                        <button onClick={() => handleDelete(item)} className="btn btn-ghost bg-red-600  text-white">
-                                            <FaTrashAlt />
+                                    </div>
+                                </td>
+                                <td>{item.name}</td>
+                                <td className="text-end">${item.price}</td>
+                                <td>
+                                    <button onClick={() => handleDelete(item)} className="btn btn-ghost bg-red-600 text-white">
+                                        <FaTrashAlt />
+                                    </button>
+                                </td>
+                                <td>
+                                    <Link to={`/dashboard/payment/${item._id}`}>
+                                        <button onClick={() => handlePay(item)} className="btn bg-pink-500 text-white btn-sm">
+                                            PAY
                                         </button>
-                                    </td>
-                                    <td>
-                                        <Link to={{
-                                            pathname: "/dashboard/payment",
-                                            state: { price: item.price } // Pass the price as a prop
-                                        }}>
-                                            <button className="btn bg-pink-500 text-white btn-sm">PAY</button>
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))
-                        }
+                                    </Link>
+
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
