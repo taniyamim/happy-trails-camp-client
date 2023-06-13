@@ -26,7 +26,7 @@ const Header = () => {
                 </div>
                 <Link to="/" className="btn btn-ghost normal-case text-xl">
                     {/* <img className="w-20 h-16" src={logo} alt="" /> */}
-                    <a className="btn btn-ghost normal-case text-xl">Toys World</a>
+                    <a className="btn btn-ghost normal-case text-xl">Happy Trial Camping</a>
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -35,7 +35,7 @@ const Header = () => {
                     <li> <Link to="/instructors">Instructors</Link> </li>
                     <li> <Link to="/classes">Classes</Link> </li>
                     {user?.email ? <>
-                        <li> <Link to="/dashboard">Dashboard</Link> </li>
+                        <li> <Link to="/dashboard/myclass">Dashboard</Link> </li>
                         <li><button onClick={handleLogOut}>Log out</button></li>
                     </>
                         : <li> <Link to="/login">Login</Link> </li>

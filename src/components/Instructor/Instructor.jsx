@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Instructor = ({ instructor }) => {
-    console.log(instructor);
+    // console.log(instructor);
 
     const { instructorName, instructorImage, name, numberOfStudents } = instructor;
     return (

@@ -13,10 +13,10 @@ const Dashboard = () => {
     const [selectedClass] = UseSelectedClass();
     const [paymentClass, refetch] = usePaymentClass();
     // console.log(selectedClass);
-    const isInstructor = false;
-    const isAdmin = false;
-    // const [isInstructor] = useInstructor();
-    // const [isAdmin] = useAdmin();
+    // const isInstructor = false;
+    // const isAdmin = false;
+    const [isInstructor] = useInstructor();
+    const [isAdmin] = useAdmin();
 
     return (
         <div>

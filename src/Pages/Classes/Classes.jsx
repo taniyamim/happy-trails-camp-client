@@ -75,7 +75,7 @@ const Classes = () => {
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-8'>
                 {classes.map(cls => (
                     <div key={cls._id} className={`card w-96 glass ${cls.availableSeats === 0 ? 'bg-red-900 text-white' : ''}`}>
-                        <figure><img src={cls.image} className='h-52 py-5 rounded-xl' alt="car!" /></figure>
+                        <figure><img src={cls.classImg} className='h-52 py-5 rounded-xl' alt="img" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">{cls.name}</h2>
                             <p> <span className='font-bold'>Instructor:</span> {cls.instructorName}</p>
