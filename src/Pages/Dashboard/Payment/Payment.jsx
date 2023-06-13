@@ -5,26 +5,29 @@ import CheckoutForm from './CheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
 import UseSelectedClass from '../../../hooks/UseSelectedClass';
 
-// TODO: provide publishable Key
+
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway);
+console.log(stripePromise);
 
 const Payment = () => {
     // const location = useLocation();
     // const { id } = location.state || {};
     const { id } = useParams();
     console.log("_id" , id);
-    const [selectedClass, refetch] = UseSelectedClass();
+    const [selectedClass] = UseSelectedClass();
 
-    // Retrieve the price based on the selected item's ID
-    const selectedPrice = id ? selectedClass.find(item => item._id === id)?.price : undefined;
-    console.log(selectedPrice);
+    const classDetails = selectedClass.find((item) => item._id === id);
+    console.log(classDetails);
+    const price = id ? selectedClass.find(item => item._id === id)?.price : undefined;
+    console.log(price);
+   
 
     return (
         <div>
             <h2 className="text-3xl">Payment</h2>
-            {selectedPrice && <p>Price: ${selectedPrice}</p>}
+            {price && <p>Price: ${price}</p>}
             <Elements stripe={stripePromise}>
-                <CheckoutForm selectedClass={selectedClass}></CheckoutForm>
+                <CheckoutForm price={price} classDetails={classDetails}></CheckoutForm>
             </Elements>
         </div>
     );

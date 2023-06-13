@@ -4,9 +4,11 @@ import { useState } from "react";
 import './CheckoutForm.css'
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 
-const CheckoutForm = ({ selectedClass, price }) => {
+const CheckoutForm = ({ price , classDetails }) => {
+    console.log(classDetails);
     const stripe = useStripe();
     const elements = useElements();
     const { user } = useAuth();
@@ -15,7 +17,21 @@ const CheckoutForm = ({ selectedClass, price }) => {
     const [clientSecret, setClientSecret] = useState('');
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
-   
+
+    useEffect(() => {
+        if (price > 0) {
+            axiosSecure.post('/create-payment-intent', { price })
+                .then((res) => {
+                    console.log("client secret", res.data.clientSecret);
+                    setClientSecret(res.data.clientSecret);
+                })
+                .catch((error) => {
+                    console.log('Error fetching client secret:', error);
+                });
+        }
+    }, [price, axiosSecure]);
+
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -30,7 +46,7 @@ const CheckoutForm = ({ selectedClass, price }) => {
         }
         console.log(card);
 
-        const { error , paymentMethod } = await stripe.createPaymentMethod({
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
             card,
         })
@@ -44,52 +60,57 @@ const CheckoutForm = ({ selectedClass, price }) => {
             console.log('payment method', paymentMethod)
         }
 
-        // setProcessing(true)
+        setProcessing(true)
 
-        // const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
-        //     clientSecret,
-        //     {
-        //         payment_method: {
-        //             card: card,
-        //             billing_details: {
-        //                 email: user?.email || 'unknown',
-        //                 name: user?.displayName || 'anonymous'
-        //             },
-        //         },
-        //     },
-        // );
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
+            clientSecret,
+            {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        email: user?.email || 'unknown',
+                        name: user?.displayName || 'anonymous'
+                    },
+                },
+            },
+        );
 
-        // if (confirmError) {
-        //     console.log(confirmError);
-        // }
+        if (confirmError) {
+            console.log(confirmError);
+        }
 
-        // console.log('payment intent', paymentIntent)
-        // setProcessing(false)
-        // if (paymentIntent.status === 'succeeded') {
-        //     setTransactionId(paymentIntent.id);
-        //     // save payment information to the server
-        //     const payment = {
-        //         email: user?.email,
-        //         transactionId: paymentIntent.id,
-        //         price,
-        //         date: new Date(),
-        //         quantity: selectedClass.length,
-        //         selectedClassItem: selectedClass.map(item => item._id),
-        //         // selectedClass: selectedClass.map(item => item.menuItemId),
-        //         status: 'service pending',
-        //         itemNames: selectedClass.map(item => item.name)
-        //     }
-        //     axiosSecure.post('/payments', payment)
-        //         .then(res => {
-        //             console.log(res.data);
-        //             if (res.data.result.insertedId) {
-        //                 // display confirm
-        //             }
-        //         })
-        // }
+        console.log('payment intent', paymentIntent)
+        setProcessing(false)
 
 
-    }
+        if (paymentIntent.status === 'succeeded') {
+            setTransactionId(paymentIntent.id);
+           
+            // save payment information to the server
+            const payment = {
+                email: user?.email,
+                transactionId: paymentIntent.id,
+                price,
+                date: new Date(),
+                buyClassId: classDetails._id,
+                classId: classDetails.classId,
+                status: 'pending',
+                className: classDetails.name
+            }
+            axiosSecure.post('/payments', payment)
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.insertResult.insertedId) {
+                        Swal.fire(
+                            'Payment Succeeded!',
+                            `You Transaction id is ${paymentIntent.id} !`,
+                            'success'
+                          )
+                    }
+                })
+        }
+
+    };
 
     return (
         <>

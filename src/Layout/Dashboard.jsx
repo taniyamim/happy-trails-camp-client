@@ -11,9 +11,10 @@ import useInstructor from '../hooks/useInstructor';
 const Dashboard = () => {
     const [selectedClass] = UseSelectedClass();
     // console.log(selectedClass);
-    // const isInstructor = true;
-    const [isInstructor] = useInstructor();
-    const [isAdmin] = useAdmin();
+    const isInstructor = false;
+    const isAdmin = false;
+    // const [isInstructor] = useInstructor();
+    // const [isAdmin] = useAdmin();
 
     return (
         <div>
