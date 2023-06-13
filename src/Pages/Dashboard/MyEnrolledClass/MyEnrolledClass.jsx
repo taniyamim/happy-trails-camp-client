@@ -7,7 +7,7 @@ const MyEnrolledClass = () => {
     // console.log(paymentClass);
     return (
         // <h2>p</h2>
-        <div className="">
+        <div className="w-5/6">
             <Helmet>
                 <title> Happy Trails Camp | Enrolled Classes</title>
             </Helmet>
@@ -17,10 +17,10 @@ const MyEnrolledClass = () => {
 
             </div>
             <div className="overflow-x-auto w-full">
-                <table className="table w-full">
+                <table className="table w-full text-black">
                     {/* head */}
                     <thead>
-                        <tr>
+                        <tr className='text-black'>
                             <th>#</th>
                             <th>Class Name</th>
                             <th>date</th>

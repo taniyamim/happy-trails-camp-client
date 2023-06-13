@@ -53,7 +53,7 @@ const AddAClass = () => {
              <Helmet>
                 <title>Happy Trails Camp | Add Class</title>
             </Helmet>
-            <div className="bg-pink-200 text-white p-24 m-10 rounded-lg">
+            <div className="bg-orange-200 text-white p-24 m-10 rounded-lg">
                 <h2 className="text-center text-3xl font-extrabold py-5">Add a Class</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="">

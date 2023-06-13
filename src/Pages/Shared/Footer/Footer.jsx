@@ -3,7 +3,7 @@
 const Footer = () => {
     return (
         <div>
-        <footer className="footer p-10 bg-pink-950 text-base-content">
+        <footer className="footer p-10 bg-green-900 text-white">
             <div>
                 <span className="footer-title">Services</span>
                 <a className="link link-hover">Branding</a>
@@ -25,7 +25,7 @@ const Footer = () => {
                 <a className="link link-hover">Cookie policy</a>
             </div>
         </footer>
-        <footer className="footer px-10 py-4 border-t bg-pink-950  text-base-content border-base-300">
+        <footer className="footer px-10 py-4 border-t bg-green-900  text-white border-white">
             <div className="items-center grid-flow-col">
                 {/* <img className="w-14 h-14" src={logo} alt="" /> */}
                 <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>

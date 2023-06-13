@@ -16,10 +16,10 @@ const PaymentHistory = () => {
 
             </div>
             <div className="overflow-x-auto w-full">
-                <table className="table w-full">
+                <table className="table w-full text-black">
                     {/* head */}
                     <thead>
-                        <tr>
+                        <tr className='text-black'>
                             <th>#</th>
                             <th>Transaction Id</th>
                             <th>Class Name</th>

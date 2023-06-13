@@ -31,9 +31,9 @@ const Dashboard = () => {
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
                 </div>
-                <div className="drawer-side bg-pink-900">
+                <div className="drawer-side bg-green-900">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 h-full  text-base-content">
+                    <ul className="menu p-4 w-80 h-full  text-white">
                         {/* Sidebar content here */}
                         {
                             isAdmin ?
@@ -62,7 +62,6 @@ const Dashboard = () => {
                                     </li>
                                     <li>
                                         <NavLink to="/dashboard/paymentHistory"><FaWallet></FaWallet> Payment History
-                                            {/* <span className="badge inl badge-secondary">+{cart?.length || 0}</span> */}
                                         </NavLink>
 
                                     </li>

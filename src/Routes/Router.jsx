@@ -17,6 +17,8 @@ import MyEnrolledClass from "../Pages/Dashboard/MyEnrolledClass/MyEnrolledClass"
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import ManageClasses from "../Pages/Dashboard/ManageClasses/ManageClasses";
 import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
+import UpdateClass from "../Pages/Dashboard/UpdateClass/UpdateClass";
+
 
 
 
@@ -92,6 +94,10 @@ import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
           path: 'paymentHistory', 
           element: <PaymentHistory></PaymentHistory>
         },
+        // {
+        //   path: 'updateClass/:id', 
+        //   element: <ClassUpdateRoute></ClassUpdateRoute>
+        // },
         
       ]
     }

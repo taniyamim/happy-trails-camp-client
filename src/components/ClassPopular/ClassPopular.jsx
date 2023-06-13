@@ -5,7 +5,7 @@ const ClassPopular = ({ item }) => {
     const { name, image, description, price, numberOfStudents } = item;
     return (
         <div>
-            <div className="card w-96 shadow-xl">
+            <div className="card w-96 shadow-xl bg-orange-700 bg-opacity-70 text-white">
                 <figure className="px-10 pt-10">
                     <img src={image} alt="Shoes" className="rounded-xl h-40" />
                 </figure>
@@ -17,7 +17,7 @@ const ClassPopular = ({ item }) => {
 
                     <div className="card-actions">
                         <Link to='/classes'>
-                            <button className="btn text-white bg-rose-900">Enrol Now</button>
+                            <button className="btn text-white font-bold bg-green-900">Enrol Now</button>
                         </Link>
                     </div>
                 </div>

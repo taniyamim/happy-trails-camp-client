@@ -51,10 +51,10 @@ const MyClass = () => {
                 <h3 className="text-3xl">Total Class Selected: {selectedClass.length}</h3>
             </div>
             <div className="overflow-x-auto w-full">
-                <table className="table w-full">
+                <table className="table w-full text-black">
                     {/* head */}
                     <thead>
-                        <tr>
+                        <tr className='text-black'>
                             <th>#</th>
                             <th>Name</th>
                             <th>Instructor Name</th>

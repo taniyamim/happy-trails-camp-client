@@ -53,6 +53,10 @@ const InstructorClasses = () => {
             }
         });
     };
+    const handleUpdate = item => {
+        console.log(item);
+       
+      };
 
     return (
         <div className="">
@@ -66,7 +70,7 @@ const InstructorClasses = () => {
                 <table className="table w-full">
                     {/* head */}
                     <thead>
-                        <tr>
+                        <tr className='text-black'>
                             <th>#</th>
                             <th>Class Image</th>
                             <th>Name</th>
@@ -92,8 +96,8 @@ const InstructorClasses = () => {
                                 <td>{item.name}</td>
                                 <td className="text-end">${item.price}</td>
                                 <td> <div className='bg-green-600 text-white font-bold badge badge-sm'>
-                                        {item.status}
-                                    </div></td>
+                                    {item.status}
+                                </div></td>
                                 <td>
                                     {item.enrolledStudents}
                                 </td>
@@ -108,13 +112,11 @@ const InstructorClasses = () => {
                                         <button onClick={() => handleDelete(item)} className="btn btn-sm btn-ghost bg-red-600 text-white">
                                             <FaTrashAlt />
                                         </button>
-
-                                        <button
-                                            className="btn btn-sm btn-warning"
-                                            onClick={() => handleDeny(item._id, index)}
-                                        >
-                                           <RxUpdate></RxUpdate>
+                                        <button onClick={() => handleUpdate(item)} className="btn btn-sm btn-warning text-white">
+                                        <RxUpdate></RxUpdate>Update
                                         </button>
+                                        
+                                        
                                     </div>
                                 </td>
                             </tr>

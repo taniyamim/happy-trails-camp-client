@@ -69,7 +69,7 @@ const Register = () => {
             <Helmet>
                 <title>Happy Trails Camp | Register</title>
             </Helmet>
-            <div className="hero min-h-screen bg-base-200">
+            <div className="hero min-h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center md:w-1/2 lg:text-left">
                         <h1 className="text-5xl font-bold">Sign up now!</h1>
@@ -82,7 +82,7 @@ const Register = () => {
                                     <span className="label-text">Name</span>
                                 </label>
                                 <input type="text" {...register("name", { required: true })} name="name" placeholder="Name" className="input input-bordered" />
-                                {errors.name && <span className="text-red-600">Name is required</span>}
+                                {errors.name && <span className="text-green-600">Name is required</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -137,12 +137,12 @@ const Register = () => {
                                 {errors.confirmPassword?.type === 'validate' && <p className="text-red-600">Passwords do not match</p>}
                             </div>
                             <div className="form-control mt-6">
-                                <input className="btn bg-rose-900" type="submit" value="Sign Up" />
+                                <input className="btn bg-green-900" type="submit" value="Sign Up" />
                             </div>
                         </form>
-                        <p className='my-4 text-center'>Already a user? <Link className='text-pink-400 font-bold' to="/login">Login</Link></p>
+                        <p className='my-4 text-center'>Already a user? <Link className='text-green-400 font-bold' to="/login">Login</Link></p>
                         <div className="divider">OR</div>
-                        <button onClick={handleGoogleSignIn} className="btn m-5 gap-2 bg-pink-900 text-white">
+                        <button onClick={handleGoogleSignIn} className="btn m-5 gap-2 bg-green-900 text-white">
                             Sign In With Google
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-google" viewBox="0 0 16 16"> <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" /> </svg>
                         </button>
