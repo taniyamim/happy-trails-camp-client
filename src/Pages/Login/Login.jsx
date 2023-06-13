@@ -3,7 +3,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2'
 import { AuthContext } from '../../Providers/AuthProvider';
-import Img from '../../../public/13.jpg'
 
 const Login = () => {
 

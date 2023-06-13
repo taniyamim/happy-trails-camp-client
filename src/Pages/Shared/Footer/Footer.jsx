@@ -1,4 +1,4 @@
-
+import logo from '../../../assets/white-logo-happy.png'
 
 const Footer = () => {
     return (
@@ -27,7 +27,7 @@ const Footer = () => {
         </footer>
         <footer className="footer px-10 py-4 border-t bg-green-900  text-white border-white">
             <div className="items-center grid-flow-col">
-                {/* <img className="w-14 h-14" src={logo} alt="" /> */}
+                <img className="h-14" src={logo} alt="" />
                 <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
             </div>
             <div className="md:place-self-center md:justify-self-end">
