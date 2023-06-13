@@ -5,7 +5,7 @@ const ClassPopular = ({ item }) => {
     const { name, image, description, price, numberOfStudents } = item;
     return (
         <div>
-            <div className="card w-96 bg-white shadow-xl">
+            <div className="card w-96 shadow-xl">
                 <figure className="px-10 pt-10">
                     <img src={image} alt="Shoes" className="rounded-xl h-40" />
                 </figure>

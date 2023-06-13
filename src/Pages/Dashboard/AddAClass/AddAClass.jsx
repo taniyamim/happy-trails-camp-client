@@ -4,6 +4,7 @@ import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import { Helmet } from 'react-helmet-async';
 
 const AddAClass = () => {
     const { user } = useAuth()
@@ -23,7 +24,8 @@ const AddAClass = () => {
             instructorEmail: user.email,
             price: parseFloat(form.price.value),
             availableSeats: parseInt(form.availableSeats.value),
-            status: "Pending"
+            status: "Pending",
+            enrolledStudents: 0,
         };
 
         axiosSecure
@@ -47,7 +49,10 @@ const AddAClass = () => {
     };
 
     return (
-        <div>
+        <div className='w-full'>
+             <Helmet>
+                <title>Happy Trails Camp | Add Class</title>
+            </Helmet>
             <div className="bg-pink-200 text-white p-24 m-10 rounded-lg">
                 <h2 className="text-center text-3xl font-extrabold py-5">Add a Class</h2>
                 <form onSubmit={handleSubmit}>

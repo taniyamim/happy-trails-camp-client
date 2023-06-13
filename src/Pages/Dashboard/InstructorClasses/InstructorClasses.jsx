@@ -7,13 +7,14 @@ import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import UseInstructorClass from '../../../hooks/userInstructorClass';
+import { RxUpdate } from "react-icons/rx";
 
 const InstructorClasses = () => {
     const { user } = useContext(AuthContext);
     console.log(user.email);
     const [axiosSecure] = useAxiosSecure();
-    const [addClass , refetch] = UseInstructorClass();
-    console.log('classess',addClass);
+    const [addClass, refetch] = UseInstructorClass();
+    console.log('classess', addClass);
 
     // const { refetch } = useQuery({
     //     queryKey: ['addClass', user?.email],
@@ -26,7 +27,7 @@ const InstructorClasses = () => {
     //     },
     // });
 
-      
+
 
     const handleDelete = item => {
         Swal.fire({
@@ -54,7 +55,7 @@ const InstructorClasses = () => {
     };
 
     return (
-        <div className="w-full">
+        <div className="">
             <Helmet>
                 <title>Happy Trails Camp | My Classes</title>
             </Helmet>
@@ -67,11 +68,14 @@ const InstructorClasses = () => {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Class</th>
+                            <th>Class Image</th>
                             <th>Name</th>
                             <th>Price</th>
+                            <th>Status</th>
+                            <th>Enrolled Students</th>
+                            <th>Available Seats</th>
+                            <th>Feedbacks</th>
                             <th>Action</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -81,21 +85,37 @@ const InstructorClasses = () => {
                                 <td>
                                     <div className="avatar">
                                         <div className="mask mask-squircle w-12 h-12">
-                                            <img src={item.classImage} alt="Avatar Tailwind CSS Component" />
+                                            <img src={item.classImg} alt="Avatar Tailwind CSS Component" />
                                         </div>
                                     </div>
                                 </td>
-                                <td>{item.className}</td>
+                                <td>{item.name}</td>
                                 <td className="text-end">${item.price}</td>
+                                <td> <div className='bg-green-600 text-white font-bold badge badge-sm'>
+                                        {item.status}
+                                    </div></td>
                                 <td>
-                                    <button onClick={() => handleDelete(item)} className="btn btn-ghost bg-red-600 text-white">
-                                        <FaTrashAlt />
-                                    </button>
+                                    {item.enrolledStudents}
                                 </td>
                                 <td>
-                                    <Link to="/dashboard/payment">
-                                        <button className="btn bg-pink-500 text-white btn-sm">PAY</button>
-                                    </Link>
+                                    {item.availableSeats}
+                                </td>
+                                <td>
+                                    {item.feedback}
+                                </td>
+                                <td>
+                                    <div className="flex gap-2">
+                                        <button onClick={() => handleDelete(item)} className="btn btn-sm btn-ghost bg-red-600 text-white">
+                                            <FaTrashAlt />
+                                        </button>
+
+                                        <button
+                                            className="btn btn-sm btn-warning"
+                                            onClick={() => handleDeny(item._id, index)}
+                                        >
+                                           <RxUpdate></RxUpdate>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         ))}
