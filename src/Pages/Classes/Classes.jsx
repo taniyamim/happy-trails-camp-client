@@ -23,7 +23,7 @@ const Classes = () => {
     const handleSelected = cls => {
         console.log(cls);
         if (user) {
-            const selectedClass = {classId:cls._id, name:cls.name, image: cls.image, price: cls.price, instructorName: cls.instructorName, email: user.email}
+            const selectedClass = {classId:cls._id, name:cls.name, image: cls.image, price: cls.price, instructorName: cls.instructorName, availableSeats: cls.availableSeats, email: user.email}
           
             fetch('http://localhost:5000/selectedClasses', {
                 method: 'POST',

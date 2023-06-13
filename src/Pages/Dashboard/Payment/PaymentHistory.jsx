@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 
 const PaymentHistory = () => {
     const [paymentClass, refetch] = usePaymentClass();
+    const sortedPaymentClass = paymentClass.sort((a, b) => new Date(b.date) - new Date(a.date));
     return (
         <div className="">
             <Helmet>
@@ -29,7 +30,7 @@ const PaymentHistory = () => {
                     </thead>
                     <tbody>
                         {
-                            paymentClass.map((item, index) => <tr
+                           sortedPaymentClass.map((item, index) => <tr
                                 key={item._id}
                             >
                                 <td>
