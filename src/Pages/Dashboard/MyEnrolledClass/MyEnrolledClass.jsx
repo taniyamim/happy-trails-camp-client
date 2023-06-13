@@ -7,7 +7,7 @@ const MyEnrolledClass = () => {
     // console.log(paymentClass);
     return (
         // <h2>p</h2>
-        <div className="w-full">
+        <div className="">
             <Helmet>
                 <title> Happy Trails Camp | Enrolled Classes</title>
             </Helmet>
