@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FaTrashAlt } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const ManageClasses = () => {
     const [allClasses, setAllClasses] = useState([]);
     const [disabledButtons, setDisabledButtons] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [feedback, setFeedback] = useState('');
+    const [currentItem, setCurrentItem] = useState(null);
 
     useEffect(() => {
         fetch('http://localhost:5000/allClasses')
@@ -95,6 +99,48 @@ const ManageClasses = () => {
         }
     };
 
+    const handleFeedback = async () => {
+        const classId = currentItem._id;
+
+        try {
+            const response = await fetch(`http://localhost:5000/allClasses/${classId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ feedback }),
+            });
+
+            if (response.ok) {
+                Swal.fire({
+                    title: 'Feedback Sent Successfully',
+                    showClass: {
+                      popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                      popup: 'animate__animated animate__fadeOutUp'
+                    }
+                  })
+                setFeedback('');
+                setShowModal(false);
+            } else {
+                console.error('Failed to send feedback');
+            }
+        } catch (error) {
+            console.error('Error occurred while sending feedback:', error);
+        }
+    };
+
+    const openModal = (classId) => {
+        const selectedItem = allClasses.find(item => item._id === classId);
+        setCurrentItem(selectedItem);
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setCurrentItem(null);
+        setShowModal(false);
+    };
 
     return (
         <div className="w-full">
@@ -146,7 +192,7 @@ const ManageClasses = () => {
                                         <button
                                             className="btn btn-sm btn-success"
                                             onClick={() => handleApprove(item._id, index)}
-                                            disabled={item.status === 'Approved' || item.status === 'Denied' }
+                                            disabled={item.status === 'Approved' || item.status === 'Denied'}
                                         >
                                             Approve
                                         </button>
@@ -159,7 +205,12 @@ const ManageClasses = () => {
                                             Deny
                                         </button>
 
-                                        <button className="btn btn-sm btn-warning">Send Feedback</button>
+                                        <button
+                                            onClick={() => openModal(item._id)}
+                                            className="btn btn-sm btn-warning"
+                                        >
+                                            Send Feedback
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -167,6 +218,28 @@ const ManageClasses = () => {
                     </tbody>
                 </table>
             </div>
+
+            {showModal && (
+                <div className="fixed inset-0 flex items-center justify-center z-50">
+                    <div className="bg-white p-8 w-80">
+                        <h3 className="font-bold text-lg mb-4">Send Feedback</h3>
+                        <textarea
+                            className="form-input mb-4"
+                            placeholder="Enter your feedback"
+                            value={feedback}
+                            onChange={e => setFeedback(e.target.value)}
+                        ></textarea>
+                        <div className="flex justify-end">
+                            <button className="btn btn-primary mr-2" onClick={handleFeedback}>
+                                Send
+                            </button>
+                            <button className="btn btn-secondary" onClick={closeModal}>
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
