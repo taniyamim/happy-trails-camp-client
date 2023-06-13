@@ -1,16 +1,18 @@
 import React from 'react';
-import UseSelectedClass from '../../../hooks/UseSelectedClass';
 import { Helmet } from 'react-helmet-async';
+import usePaymentClass from '../../../hooks/usePaymentClass';
 
 const MyEnrolledClass = () => {
-    const [selectedClass, refetch] = UseSelectedClass();
+    const [paymentClass, refetch] = usePaymentClass();
+    // console.log(paymentClass);
     return (
+        // <h2>p</h2>
         <div className="w-full">
             <Helmet>
-                <title> Happy Trails Camp | My Selected Classes</title>
+                <title> Happy Trails Camp | Enrolled Classes</title>
             </Helmet>
             <div className="uppercase font-semibold h-[60px] flex justify-evenly items-center">
-                <h3 className="text-3xl">Total Class Selected: {selectedClass.length}</h3>
+                <h3 className="text-3xl">Total Enrolled Class: {paymentClass.length}</h3>
 
 
             </div>
@@ -20,36 +22,31 @@ const MyEnrolledClass = () => {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Class</th>
-                            <th>Name</th>
-                            <th>Instructor Name</th>
+                            <th>Class Name</th>
+                            <th>date</th>
+                            <th>Status</th>
                             <th>Price</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            selectedClass.map((item, index) => <tr
+                            paymentClass.map((item, index) => <tr
                                 key={item._id}
                             >
                                 <td>
                                     {index + 1}
                                 </td>
                                 <td>
-                                    <div className="avatar">
-                                        <div className="mask mask-squircle w-12 h-12">
-                                            <img src={item.image} alt="Avatar Tailwind CSS Component" />
-                                        </div>
-                                    </div>
+                                    {item.className}
                                 </td>
+                                
                                 <td>
-                                    {item.name}
-                                </td>
-                                <td>
-                                    {item.instructorName}
+                                    {item.date}
                                 </td>
                                 {/* <td>
-                                    {item.instructorEmail}
+                                    {item.instructorName}
                                 </td> */}
+                                <td className="text-end">{item.status}</td>
                                 <td className="text-end">${item.price}</td>
                                
                             </tr>)

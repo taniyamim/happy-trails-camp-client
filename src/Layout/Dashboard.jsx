@@ -7,9 +7,11 @@ import UseSelectedClass from '../hooks/UseSelectedClass';
 import { Helmet } from 'react-helmet-async';
 import useAdmin from '../hooks/useAdmin';
 import useInstructor from '../hooks/useInstructor';
+import usePaymentClass from '../hooks/usePaymentClass';
 
 const Dashboard = () => {
     const [selectedClass] = UseSelectedClass();
+    const [paymentClass, refetch] = usePaymentClass();
     // console.log(selectedClass);
     const isInstructor = false;
     const isAdmin = false;
@@ -54,7 +56,7 @@ const Dashboard = () => {
                                     </li>
                                     <li>
                                         <NavLink to="/dashboard/myEnrolledclass"><ImBook></ImBook> My Enrolled Class
-                                            {/* <span className="badge inl badge-secondary">+{cart?.length || 0}</span> */}
+                                            <span className="badge inl badge-secondary">+{paymentClass?.length || 0}</span>
                                         </NavLink>
 
                                     </li>
