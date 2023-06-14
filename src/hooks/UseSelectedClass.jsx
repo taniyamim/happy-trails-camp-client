@@ -4,7 +4,7 @@ import { AuthContext } from '../Providers/AuthProvider';
 import useAxiosSecure from './useAxiosSecure';
 
 const UseSelectedClass = () => {
-    
+
     const { user } = useContext(AuthContext);
     // const token = localStorage.getItem('access-token');
     const [axiosSecure] = useAxiosSecure();

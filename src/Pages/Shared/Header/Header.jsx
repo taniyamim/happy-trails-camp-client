@@ -36,7 +36,7 @@ const Header = () => {
                     <li> <Link to="/instructors">Instructors</Link> </li>
                     <li> <Link to="/classes">Classes</Link> </li>
                     {user?.email ? <>
-                        <li> <Link to="/dashboard/myclass">Dashboard</Link> </li>
+                        <li> <Link to="/dashboard/">Dashboard</Link> </li>
                         <li><button onClick={handleLogOut}>Log out</button></li>
                     </>
                         : <li> <Link to="/login">Login</Link> </li>

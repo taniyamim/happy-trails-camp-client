@@ -11,7 +11,7 @@ const ManageClasses = () => {
     const [currentItem, setCurrentItem] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:5000/allClasses')
+        fetch('https://summer-camp-server-bay.vercel.app/allClasses')
             .then(res => res.json())
             .then(data => {
                 setAllClasses(data);
@@ -33,7 +33,7 @@ const ManageClasses = () => {
                 index
             ]);
 
-            const response = await fetch(`http://localhost:5000/allClasses/${classId}`, {
+            const response = await fetch(`https://summer-camp-server-bay.vercel.app/allClasses/${classId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const ManageClasses = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/allClasses/${classId}`, {
+            const response = await fetch(`https://summer-camp-server-bay.vercel.app/allClasses/${classId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ const ManageClasses = () => {
         const classId = currentItem._id;
 
         try {
-            const response = await fetch(`http://localhost:5000/allClasses/${classId}`, {
+            const response = await fetch(`https://summer-camp-server-bay.vercel.app/allClasses/${classId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

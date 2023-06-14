@@ -40,7 +40,7 @@ const InstructorClasses = () => {
             confirmButtonText: 'Yes, delete it!',
         }).then(result => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/addClass/${item._id}`, {
+                fetch(`https://summer-camp-server-bay.vercel.app/addClass/${item._id}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())
@@ -109,9 +109,9 @@ const InstructorClasses = () => {
                                 </td>
                                 <td>
                                     <div className="flex gap-2">
-                                        <button onClick={() => handleDelete(item)} className="btn btn-sm btn-ghost bg-red-600 text-white">
+                                        {/* <button onClick={() => handleDelete(item)} className="btn btn-sm btn-ghost bg-red-600 text-white">
                                             <FaTrashAlt />
-                                        </button>
+                                        </button> */}
                                         <button onClick={() => handleUpdate(item)} className="btn btn-sm btn-warning text-white">
                                         <RxUpdate></RxUpdate>Update
                                         </button>

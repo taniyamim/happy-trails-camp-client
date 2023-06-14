@@ -7,7 +7,7 @@ import { AttentionSeeker, Slide , Bounce } from "react-awesome-reveal";
 const PopularInstructor = () => {
     const [popularInstructor, setPopularInstructor] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/dummyClasses')
+        fetch('https://summer-camp-server-bay.vercel.app/dummyClasses')
             .then(res => res.json())
             .then(data => {
                 const popularInstructor = data.filter(instructor => instructor.numberOfStudents >= 15);

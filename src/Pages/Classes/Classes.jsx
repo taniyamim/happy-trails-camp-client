@@ -14,7 +14,7 @@ const Classes = () => {
     const navigate = useNavigate();
     const location = useLocation();
     useEffect(() => {
-        fetch('http://localhost:5000/classes')
+        fetch('https://summer-camp-server-bay.vercel.app/classes')
             .then(res => res.json())
             .then(data => {
                 setClasses(data);
@@ -26,7 +26,7 @@ const Classes = () => {
         if (user) {
             const selectedClass = {classId:cls._id, name:cls.name, image: cls.image, price: cls.price, instructorName: cls.instructorName, availableSeats: cls.availableSeats, email: user.email}
           
-            fetch('http://localhost:5000/selectedClasses', {
+            fetch('https://summer-camp-server-bay.vercel.app/selectedClasses', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
