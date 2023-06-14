@@ -1,4 +1,4 @@
-### Toy Marketplace
+### Happy Trails Camp
 
 ## A list of features
 ***
